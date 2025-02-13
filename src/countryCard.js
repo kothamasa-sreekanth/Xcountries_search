@@ -10,4 +10,4 @@ const CountryCard = ({ name, flag }) => {
     );
 };
 
-export default CountryCard;
+export default CountryCard; 
