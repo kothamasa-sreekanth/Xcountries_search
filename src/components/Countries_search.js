@@ -5,8 +5,8 @@ import "../App.css";
 const App = () => {
   const [countries, setCountries] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [loading, setLoading] = useState(true); // ✅ Added loading state
-  const [error, setError] = useState(null); // ✅ Added error handling
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -14,9 +14,11 @@ const App = () => {
         const response = await fetch("https://restcountries.com/v3.1/all");
         if (!response.ok) throw new Error("Network response was not ok.");
         const data = await response.json();
+
+        console.log("Fetched API Data:", data); // ✅ Debugging API response
         setCountries(data);
       } catch (error) {
-        console.error("Fetch error:", error); // ✅ Proper error logging
+        console.error("Fetch the error:", error); // ✅ Ensure error is logged
         setError(error.message);
       } finally {
         setLoading(false);
@@ -36,7 +38,7 @@ const App = () => {
       country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  console.log("Filtered results for 'ind':", filteredCountries); // ✅ Debugging
+  console.log("Filtered results for 'ind':", filteredCountries); // ✅ Debug search results
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div className="error">Error: {error}</div>;
