@@ -11,14 +11,14 @@ const App = () => {
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        const response = await fetch("https://restcountries.com/v3.1/all");
+        const response = await fetch("https://countries-search-data-prod-812920491762.asia-south1.run.app/countries");
         if (!response.ok) throw new Error("Network response was not ok.");
         const data = await response.json();
 
-        console.log("Fetched API Data:", data); // ✅ Debugging API response
+        console.log("Fetched API Data:", data); // Debugging API response
         setCountries(data);
       } catch (error) {
-        console.error("Fetch the error:", error); // ✅ Ensure error is logged
+        console.error("Fetch the error:", error); // Ensure error is logged
         setError(error.message);
       } finally {
         setLoading(false);
@@ -38,7 +38,7 @@ const App = () => {
       country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  console.log("Filtered results for 'ind':", filteredCountries); // ✅ Debug search results
+  console.log("Filtered results for 'ind':", filteredCountries); // Debug search results
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div className="error">Error: {error}</div>;
